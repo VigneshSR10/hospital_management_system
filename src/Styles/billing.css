@@ -1,0 +1,95 @@
+.billing-page {
+  background: #f9fafb;
+  height: 100%;
+  width: 100%;
+   overflow: hidden;
+}
+.billing-title {
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+padding-left: 20px;
+  border-bottom: 2px solid #e5e7eb; 
+}
+.stats-wrapper {
+  padding-left: 16px;
+  padding-right: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.stat-col {
+  border-right: 1px solid #e5e7eb;
+}
+.stat-col:last-child {
+  border-right: none;
+}
+.stat-card {
+background-color: #F4F4F6;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  border-radius: 0;
+}
+
+.stat-card h4 {
+  margin-top: 4px;
+  color: #1f2937;
+}
+.filter-bar {
+  background: #F2F1F6;
+  padding: 16px;
+ 
+
+   border-bottom: 1px solid #E5E6EA
+   ;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  width: 150px;
+  background-color: #DEE3E9;
+  color: #333F4F;
+}
+.search-input {
+  width: 40%;
+  margin-bottom: 16px;
+   margin:  16px;
+  padding: 11px;
+  background-color: #F6F6F8;
+  border: 1px solid #E5E6EA;
+  color: #1f2937;
+  font-weight: bold;
+}
+.billing-table {
+  border-radius: 12px;
+ margin: 1%;
+}
+.billing-table th,
+.billing-table td {
+  border-bottom: 1px solid #e5e7eb !important;
+  border-right: none !important;
+   padding: 16px;
+}
+.action-bar {
+  text-align: right;
+  margin-top: 16px;
+  margin-right: 16px;
+ 
+}
+@media (max-width: 420px) {
+  .search-input {
+    width: 100%;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .action-bar {
+    text-align: center;
+  }
+}
