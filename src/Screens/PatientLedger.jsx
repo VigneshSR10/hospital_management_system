@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PaymentSummaryModal from "../Components/PaymentSummaryModal.jsx";
 import { fetchAllpatient } from "../store/patientSlice";
 import { patientLists } from "../Services/endpoints";
+import useUIStore from "../store/uiStore.jsx";
 import "../Styles/patientLedger.css";
 
 const { Title, Text } = Typography;
@@ -76,6 +77,12 @@ const ledgerColumns = [
 export default function PatientLedger() {
   const dispatch = useDispatch();
   const { state } = useLocation();
+  const {
+  paymentModalOpen,
+  selectedInvoice,
+  openPaymentModal,
+  closePaymentModal
+} = useUIStore();
   const { list } = useSelector(state => state.patients);
   useEffect(() => {
     if (state?.id) {
@@ -114,15 +121,11 @@ export default function PatientLedger() {
   const [searchText, setSearchText] = useState("");
   const [itemFilter, setItemFilter] = useState(null);
   const [statusFilter, setStatusFilter] = useState(null);
-  const [openPayment, setOpenPayment] = useState(false);
-  const [selectedLedgerItem, setSelectedLedgerItem] = useState(null);
   const filteredData = useMemo(() => {
     const search = searchText.toLowerCase();
-
     return ledgerData.filter(item => {
       const matchesTab =
         activeTab === "All" || item.category === activeTab;
-
       const matchesSearch =
         item.desc?.toLowerCase().includes(search) ||
         item.code?.toLowerCase().includes(search);
@@ -166,13 +169,12 @@ export default function PatientLedger() {
 
   const handleRowClick = useCallback(
     (record) => ({
-      onClick: () => {
-        setSelectedLedgerItem(record);
-        setOpenPayment(true);
-      },
-      style: { cursor: "pointer" }
-    }),
-    []
+    onClick: () => {
+      openPaymentModal(record);
+    },
+    style: { cursor: "pointer" }
+  }),
+  [openPaymentModal]
   );
 
   return (
@@ -331,14 +333,12 @@ export default function PatientLedger() {
         />
       </Card>
 
-      {openPayment && (
-        <PaymentSummaryModal
-          open={openPayment}
-          onClose={() => setOpenPayment(false)}
-          patient={state}
-          item={selectedLedgerItem}
-        />
-      )}
+      <PaymentSummaryModal
+  open={paymentModalOpen}
+  onClose={closePaymentModal}
+  patient={state}
+  item={selectedInvoice}
+/>
     </div>
   );
 }
