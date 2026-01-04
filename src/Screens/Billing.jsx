@@ -37,7 +37,7 @@ const columns = [
     title: "Status",
     dataIndex: "status",
     render: (status) => {
-      const color = status === "READY" ? "#C96669" : "#33A470";
+      const color = status === "discharge" ? "#C96669" : "#33A470";
       return (
         <Tag color="#fff" style={{ backgroundColor: color, padding: "2%" }}>
           {status}
